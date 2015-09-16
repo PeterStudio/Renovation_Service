@@ -151,9 +151,11 @@
     }
     //设备号
     NSString *imeiStr = [[UIDevice currentDevice] myGlobalDeviceId];
+    [SVProgressHUD showWithStatus:@"注册中" maskType:SVProgressHUDMaskTypeClear];
     [[AppService sharedManager] request_Login_Http_username:_phoneTF.text code:checkStr system:@"1" version:curVersion imei:imeiStr lat:lat lng:lng success:^(id responseObject) {
         UserModel * userModel = (UserModel *)responseObject;
         if ([RETURN_CODE_SUCCESS isEqualToString:userModel.retcode]) {
+            [SVProgressHUD dismiss];
             [[NSUserDefaults standardUserDefaults] setObject:[userModel.doc toDictionary] forKey:USERINFO];
             [[NSUserDefaults standardUserDefaults] synchronize];
             RootViewController * vc = [[RootViewController alloc] init];

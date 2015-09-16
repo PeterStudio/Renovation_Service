@@ -53,6 +53,9 @@
     [super viewDidLoad];
     self.title = _workerName;
     
+    _headImageView.layer.masksToBounds = YES;
+    _headImageView.layer.cornerRadius = 25.0f;
+    
     UINib *cellNib1 = [UINib nibWithNibName:@"FirstTableViewCell" bundle:nil];
     [_TableView1 registerNib:cellNib1 forCellReuseIdentifier:cellIndentifier1];
     self.firstCell  = [_TableView1 dequeueReusableCellWithIdentifier:cellIndentifier1];
@@ -74,7 +77,11 @@
     [_ratingBarView setImageDeselected:@"start_icon01" halfSelected:nil fullSelected:@"start_icon01_1" andDelegate:nil];
     [_sRateBarView setImageDeselected:@"start_icon01" halfSelected:nil fullSelected:@"start_icon01_1" andDelegate:nil];
     
+    [self requestUserInfo];
     
+}
+
+- (void)requestUserInfo{
     [SVProgressHUD showWithStatus:@"加载中。。。" maskType:SVProgressHUDMaskTypeClear];
     [[AppService sharedManager] request_foremanDetail_Http_contractorId:_contractorId success:^(id responseObject) {
         ForemanDetailModel * foremanDetailModel = (ForemanDetailModel *)responseObject;
@@ -144,6 +151,9 @@
     [[AppService sharedManager] request_appraise_Http_userId:[dic objectForKey:@"userId"] contractorId:_contractorId content:_wTextView.text start:star success:^(id responseObject) {
         BaseModel * baseModel = (BaseModel *)responseObject;
         if ([RETURN_CODE_SUCCESS isEqualToString:baseModel.retcode]) {
+            _wTextView.text = @"";
+            _placeholdLab.hidden = NO;
+            [_sRateBarView displayRating:1.0f];
             [SVProgressHUD showSuccessWithStatus:baseModel.retinfo];
         }else{
             [SVProgressHUD showErrorWithStatus:baseModel.retinfo];

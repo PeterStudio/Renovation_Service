@@ -218,6 +218,7 @@
     // 北京
     CLLocationCoordinate2D pt = mapView.centerCoordinate;
     [_mapView setCenterCoordinate:pt animated:YES];
+    [_mapView setZoomLevel:17];
     [SVProgressHUD dismiss];
 }
 
@@ -249,7 +250,7 @@
 {
     ++startIndex;
     if (startIndex == 1) {
-        [_mapView setZoomLevel:14];
+        [_mapView setZoomLevel:17];
         [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
         
         [self reverseGeocode:userLocation.location];
@@ -259,7 +260,7 @@
     [_mapView updateLocationData:userLocation];
     if (_isShowUserLocation) {
         _isShowUserLocation = NO;
-        [_mapView setZoomLevel:14];
+        [_mapView setZoomLevel:17];
         [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
         [self reverseGeocode:userLocation.location];
         [_locService stopUserLocationService];
@@ -281,6 +282,7 @@
 - (void)didStopLocatingUser
 {
     NSLog(@"stop locate");
+    [_mapView setZoomLevel:17];
     [SVProgressHUD dismiss];
 }
 

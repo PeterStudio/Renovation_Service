@@ -15,6 +15,7 @@
 #import "UIDevice+IdentifierAddition.h"
 #import "VersionModel.h"
 
+#import "RootViewController.h"
 
 @interface AppDelegate ()
 
@@ -52,9 +53,8 @@
         [_locService startUserLocationService];
     }
     
-//    [LocationManager sharedInstance];
     if ([[NSUserDefaults standardUserDefaults] objectForKey:USERINFO]) {
-        HomeViewController * vc = [[HomeViewController alloc] init];
+        RootViewController * vc = [[RootViewController alloc] init];
         UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:vc];
         nav.navigationItem.backBarButtonItem = nil;
         [self.window setRootViewController:nav];
@@ -64,11 +64,7 @@
         nav.navigationItem.backBarButtonItem = nil;
         [self.window setRootViewController:nav];
     }
-    
-    
-    
     [self.window makeKeyAndVisible];
-
     return YES;
 }
 

@@ -12,9 +12,19 @@
 #import "MyRepairViewController.h"
 #import "NearWorkersViewController.h"
 #import "MyInfoViewController.h"
+#import "UserModel.h"
+#import "UIButton+WebCache.h"
+
 
 @interface PersionViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *headBtn;
+@property (weak, nonatomic) IBOutlet UILabel *nameLab;
+@property (weak, nonatomic) IBOutlet UILabel *addressLab;
+@property (weak, nonatomic) IBOutlet UILabel *yifukuanLab;
+@property (weak, nonatomic) IBOutlet UILabel *zaishigongLab;
+@property (weak, nonatomic) IBOutlet UILabel *yiwangongLab;
 
+@property (strong, nonatomic) UserInfoModel * uModel;
 @end
 
 @implementation PersionViewController
@@ -37,6 +47,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title =  @"个人中心";
+    
+    self.uModel = [[UserInfoModel alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:USERINFO] error:nil];
+    _headBtn.layer.masksToBounds = YES;
+    _headBtn.layer.cornerRadius = 25.0f;
+    [_headBtn sd_setImageWithURL:[NSURL URLWithString:self.uModel.headUrl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"user_head02"]];
+    _nameLab.text = self.uModel.name;
+    _addressLab.text = self.uModel.address;
+    _yifukuanLab.text = @"0笔";
+    _zaishigongLab.text = @"0个";
+    _yiwangongLab.text = @"0个";
     
     if (UIScreenHeight == 480) {
         _heightConstraint1.constant = _heightConstraint2.constant = 15;
