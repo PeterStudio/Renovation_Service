@@ -91,6 +91,8 @@
 //    } failure:^(NSError *error) {
 //        [SVProgressHUD showErrorWithStatus:OTHER_ERROR_MESSAGE];
 //    }];
+    
+    [self LocationButtonClick:nil];
 }
 
 - (void)addForemenAnnotation:(ForemenModel *)foremenModel {

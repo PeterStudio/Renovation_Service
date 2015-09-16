@@ -539,4 +539,20 @@ static dispatch_once_t predicate;
         }
     }];
 }
+
+- (void)request_PRE_Http_success:(void (^)(id))success failure:(void (^)(NSError *))failure{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer =  [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];//设置相应内容类型
+    [manager GET:@"http://pre.im/api/v1/app/install?app_key=b301132e16c63e4961d7199cd5839f9a" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (success) {
+            success(responseObject);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
 @end

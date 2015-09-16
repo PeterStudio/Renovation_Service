@@ -151,6 +151,8 @@
 		0BF116F31B147134000883B7 /* ForemanDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF116F21B147134000883B7 /* ForemanDetailModel.m */; };
 		0BF116F61B1478FD000883B7 /* PayHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF116F51B1478FD000883B7 /* PayHistoryModel.m */; };
 		0BF116F91B147BA0000883B7 /* AmountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF116F81B147BA0000883B7 /* AmountModel.m */; };
+		0BF2A4BB1BA9C24200E3A7D9 /* WelComeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2A4B91BA9C24200E3A7D9 /* WelComeViewController.m */; };
+		0BF2A4BC1BA9C24200E3A7D9 /* WelComeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BF2A4BA1BA9C24200E3A7D9 /* WelComeViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -414,6 +416,9 @@
 		0BF116F51B1478FD000883B7 /* PayHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayHistoryModel.m; sourceTree = "<group>"; };
 		0BF116F71B147BA0000883B7 /* AmountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmountModel.h; sourceTree = "<group>"; };
 		0BF116F81B147BA0000883B7 /* AmountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmountModel.m; sourceTree = "<group>"; };
+		0BF2A4B81BA9C24200E3A7D9 /* WelComeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelComeViewController.h; sourceTree = "<group>"; };
+		0BF2A4B91BA9C24200E3A7D9 /* WelComeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelComeViewController.m; sourceTree = "<group>"; };
+		0BF2A4BA1BA9C24200E3A7D9 /* WelComeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelComeViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -500,6 +505,9 @@
 				0B9B5C1F1B09D72D00A1D88B /* Classes */,
 				0B9B5BDB1B098B9F00A1D88B /* AppDelegate.h */,
 				0B9B5BDC1B098B9F00A1D88B /* AppDelegate.mm */,
+				0BF2A4B81BA9C24200E3A7D9 /* WelComeViewController.h */,
+				0BF2A4B91BA9C24200E3A7D9 /* WelComeViewController.m */,
+				0BF2A4BA1BA9C24200E3A7D9 /* WelComeViewController.xib */,
 				0B9B5BE41B098B9F00A1D88B /* Images.xcassets */,
 				0B9B5BE61B098B9F00A1D88B /* LaunchScreen.xib */,
 				0B9B5BD71B098B9F00A1D88B /* Supporting Files */,
@@ -988,6 +996,7 @@
 				TargetAttributes = {
 					0B9B5BD31B098B9F00A1D88B = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = FHRN25K2EQ;
 					};
 				};
 			};
@@ -1023,6 +1032,7 @@
 				0BAEB2621B100CB5002F968C /* SuitViewController.xib in Resources */,
 				0B9318191B2538B50069F914 /* SecondTableViewCell.xib in Resources */,
 				0B9318141B2538A00069F914 /* FirstTableViewCell.xib in Resources */,
+				0BF2A4BC1BA9C24200E3A7D9 /* WelComeViewController.xib in Resources */,
 				0B9B5BE81B098B9F00A1D88B /* LaunchScreen.xib in Resources */,
 				0BC71DAE1B0AD2F200453D40 /* MJRefresh.bundle in Resources */,
 				0BEBC69D1B1D110900C800F2 /* MyAppointmentViewController.xib in Resources */,
@@ -1130,6 +1140,7 @@
 				0BAEB2571B100C10002F968C /* InvitationFriendsViewController.m in Sources */,
 				0B9B5C5B1B09EDCD00A1D88B /* AFHTTPRequestOperation.m in Sources */,
 				0BB3810B1B2676C800817A1F /* UIImage+MultiFormat.m in Sources */,
+				0BF2A4BB1BA9C24200E3A7D9 /* WelComeViewController.m in Sources */,
 				0BB3810D1B2676C800817A1F /* UIImageView+HighlightedWebCache.m in Sources */,
 				0BB3810F1B2676C800817A1F /* UIView+WebCacheOperation.m in Sources */,
 				0BC71DBC1B0AD2F200453D40 /* UIDevice+IdentifierAddition.m in Sources */,
@@ -1194,8 +1205,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Wen Du (6WWFTZ4U92)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wen Du (6WWFTZ4U92)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wen Du (FHRN25K2EQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wen Du (FHRN25K2EQ)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1217,7 +1228,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "dc5d6f03-c7f2-4a9b-aa31-bf390157807c";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1239,8 +1250,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Wen Du (6WWFTZ4U92)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wen Du (6WWFTZ4U92)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wen Du (FHRN25K2EQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wen Du (FHRN25K2EQ)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1255,7 +1266,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "dc5d6f03-c7f2-4a9b-aa31-bf390157807c";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1266,8 +1277,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Wen Du (6WWFTZ4U92)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wen Du (6WWFTZ4U92)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wen Du (FHRN25K2EQ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Renovation/MapSDK",
@@ -1278,7 +1289,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "dc5d6f03-c7f2-4a9b-aa31-bf390157807c";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1288,8 +1299,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Wen Du (6WWFTZ4U92)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wen Du (6WWFTZ4U92)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wen Du (FHRN25K2EQ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Renovation/MapSDK",
@@ -1300,7 +1311,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "dc5d6f03-c7f2-4a9b-aa31-bf390157807c";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

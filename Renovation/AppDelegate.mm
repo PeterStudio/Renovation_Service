@@ -17,7 +17,9 @@
 
 #import "RootViewController.h"
 
-@interface AppDelegate ()
+#import "WelComeViewController.h"
+
+@interface AppDelegate ()<WelComeViewControllerDelegate>
 
 @end
 
@@ -27,15 +29,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenHeight)];
 
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"Userlatitude"]) {
-        [[NSUserDefaults standardUserDefaults] setObject:@"39.905206" forKey:@"Userlatitude"];
-        [[NSUserDefaults standardUserDefaults] setObject:@"116.390356" forKey:@"Userlongitude"];
-        [[NSUserDefaults standardUserDefaults] setObject:@"北京市" forKey:@"USERADDRESS"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-    
-//    [self updateVersion];
-    
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8) {
         //由于IOS8中定位的授权机制改变 需要进行手动授权
         CLLocationManager  *locationManager = [[CLLocationManager alloc] init];
@@ -43,16 +36,44 @@
         [locationManager requestAlwaysAuthorization];
         [locationManager requestWhenInUseAuthorization];
     }
-    _mapManager = [[BMKMapManager alloc]init];
-    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
-    BOOL ret = [_mapManager start:@"nByscOMa0BllCByQrvdZsxVC"  generalDelegate:nil];
-    if (ret) {
-        _locService = [[BMKLocationService alloc]init];
-        _locService.delegate = self;
-        [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
-        [_locService startUserLocationService];
+    
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"Userlatitude"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"39.905206" forKey:@"Userlatitude"];
+        [[NSUserDefaults standardUserDefaults] setObject:@"116.390356" forKey:@"Userlongitude"];
+        [[NSUserDefaults standardUserDefaults] setObject:@"北京市" forKey:@"USERADDRESS"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        _mapManager = [[BMKMapManager alloc]init];
+        // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
+        BOOL ret = [_mapManager start:@"nByscOMa0BllCByQrvdZsxVC"  generalDelegate:nil];
+        if (ret) {
+            _locService = [[BMKLocationService alloc]init];
+            _locService.delegate = self;
+            [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+            [_locService startUserLocationService];
+        }
+        
     }
     
+    [self test];
+//    [self updateVersion];
+    
+    //控制欢迎页
+    if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"isVersionUpdate"] integerValue] < 1)
+    {
+        //首次安装，显示引导页面
+        WelComeViewController * vc = [[WelComeViewController alloc] init];
+        vc.delegate = self;
+        self.window.rootViewController = vc;
+        [self.window makeKeyAndVisible];
+    }
+    else{
+        [self showRoot];
+    }
+    return YES;
+}
+
+- (void)showRoot{
     if ([[NSUserDefaults standardUserDefaults] objectForKey:USERINFO]) {
         RootViewController * vc = [[RootViewController alloc] init];
         UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:vc];
@@ -65,7 +86,18 @@
         [self.window setRootViewController:nav];
     }
     [self.window makeKeyAndVisible];
-    return YES;
+}
+
+
+- (void)test{
+    [[AppService sharedManager] request_PRE_Http_success:^(id responseObject) {
+        NSDictionary * dic = responseObject;
+        if ([@"0" isEqualToString:dic[@"code"]]) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:dic[@"data"]]];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)updateVersion{
@@ -128,10 +160,6 @@
 }
 
 - (void)didFailToLocateUserWithError:(NSError *)error{
-    [[NSUserDefaults standardUserDefaults] setObject:@"39.905206" forKey:@"Userlatitude"];
-    [[NSUserDefaults standardUserDefaults] setObject:@"116.390356" forKey:@"Userlongitude"];
-    [[NSUserDefaults standardUserDefaults] setObject:@"北京市天安门" forKey:@"USERADDRESS"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     [_locService stopUserLocationService];
     _locService.delegate = nil;
 }
@@ -149,6 +177,14 @@
         }
     }
     
+}
+
+#pragma mark WelcomeViewControllerDelegate
+- (void)enterButtonPressed
+{
+    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"isVersionUpdate"];
+    [self.window.rootViewController removeFromParentViewController];
+    [self showRoot];
 }
 
 @end
