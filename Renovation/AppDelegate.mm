@@ -55,7 +55,7 @@
         
     }
     
-    [self test];
+//    [self test];
 //    [self updateVersion];
     
     //控制欢迎页

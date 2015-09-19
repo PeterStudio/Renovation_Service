@@ -77,7 +77,6 @@
         [SVProgressHUD showErrorWithStatus:@"请输入11位手机号码"];
         return;
     }
-    [self checkButtonEnable];
     [[AppService sharedManager] request_getcode_Http_phone:_phoneTF.text type:@"0" success:^(id responseObject) {
         BaseModel * baseModel = (BaseModel *)responseObject;
         if ([RETURN_CODE_SUCCESS isEqualToString:baseModel.retcode]) {

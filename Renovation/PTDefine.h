@@ -63,7 +63,7 @@
 
 /**************************接口**************************/
 
-#define SERVER_URL  @"http://118.26.129.11:8080/platform/decorateOwner/"
+#define SERVER_URL  @"http://www.dingdinggongzhang.com/platform/decorateOwner/"
 
 // 3.1.1	用户登录注册
 #define HTTP_login_URL [NSString stringWithFormat:@"%@login.do", SERVER_URL]
