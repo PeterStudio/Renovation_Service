@@ -10,6 +10,9 @@
 //#import "PersionViewController.h"
 //#import "LocationManager.h"
 
+#import "AppDelegate.h"
+
+
 #import "WorkSiteListViewController.h"
 #import "SearchViewController.h"
 #import "MyAnimatedAnnotationView.h"
@@ -37,14 +40,14 @@
 -(void)viewWillAppear:(BOOL)animated {
     [_mapView viewWillAppear];
     _mapView.delegate = self;
-    _locService.delegate = self;
+//    _locService.delegate = self;
     _geocodesearch.delegate = self;
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
     [_mapView viewWillDisappear];
     _mapView.delegate = nil;
-    _locService.delegate = nil;
+//    _locService.delegate = nil;
     _geocodesearch.delegate = nil;
     [SVProgressHUD dismiss];
 }
@@ -62,9 +65,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self config];
-    _locService = [[BMKLocationService alloc]init];
+//    _locService = [[BMKLocationService alloc]init];
     [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
-    [_locService startUserLocationService];
+//    [_locService startUserLocationService];
     _mapView.delegate = self;
     _mapView.showsUserLocation = NO;
     _mapView.userTrackingMode = BMKUserTrackingModeNone;
@@ -149,7 +152,7 @@
 - (IBAction)LocationButtonClick:(id)sender {
     if (!_isShowUserLocation) {
         _isShowUserLocation = YES;
-        [_locService startUserLocationService];
+//        [_locService startUserLocationService];
         _mapView.showsUserLocation = NO;//先关闭显示的定位图层
         _mapView.userTrackingMode = BMKUserTrackingModeNone;//设置定位的状态
         _mapView.showsUserLocation = YES;//显示定位图层
@@ -169,7 +172,13 @@
         ForemenListModel * foremenListModel = (ForemenListModel *)responseObject;
         if ([RETURN_CODE_SUCCESS isEqualToString:foremenListModel.retcode]) {
             NSArray * doc = [NSArray arrayWithArray:foremenListModel.doc];
-            for (ForemenModel * foremenModel in doc) {
+            NSArray * annotaion = [[NSArray alloc] init];
+            if (doc.count > 10) {
+                annotaion = [doc subarrayWithRange:NSMakeRange(0, 10)];
+            }else{
+                annotaion = doc;
+            }
+            for (ForemenModel * foremenModel in annotaion) {
                 [self addForemenAnnotation:foremenModel];
             }
             [SVProgressHUD showSuccessWithStatus:foremenListModel.retinfo];
@@ -194,7 +203,13 @@
         NearSiteListModel * nearSiteListModel = (NearSiteListModel *)responseObject;
         if ([RETURN_CODE_SUCCESS isEqualToString:nearSiteListModel.retcode]) {
             NSArray * doc = [NSArray arrayWithArray:nearSiteListModel.doc];
-            for (NearSiteModel * nearSite in doc) {
+            NSArray * annotaion = [[NSArray alloc] init];
+            if (doc.count > 10) {
+                annotaion = [doc subarrayWithRange:NSMakeRange(0, 10)];
+            }else{
+                annotaion = doc;
+            }
+            for (NearSiteModel * nearSite in annotaion) {
                 [self addNearSiteAnnotation:nearSite];
             }
             [SVProgressHUD showSuccessWithStatus:nearSiteListModel.retinfo];
@@ -256,7 +271,7 @@
         [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
         
         [self reverseGeocode:userLocation.location];
-        [_locService stopUserLocationService];
+//        [_locService stopUserLocationService];
     }
     
     [_mapView updateLocationData:userLocation];
@@ -265,7 +280,7 @@
         [_mapView setZoomLevel:17];
         [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
         [self reverseGeocode:userLocation.location];
-        [_locService stopUserLocationService];
+//        [_locService stopUserLocationService];
     }
     
     NSNumber *latNumber = [NSNumber numberWithDouble:userLocation.location.coordinate.latitude];

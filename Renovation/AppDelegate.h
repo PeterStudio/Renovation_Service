@@ -15,7 +15,7 @@
     BMKLocationService* _locService;
 }
 @property (strong, nonatomic) UIWindow *window;
-
+#define appDelegate     ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 @end
 

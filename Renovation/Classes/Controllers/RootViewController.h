@@ -10,7 +10,7 @@
 #import "NearWorkersViewController.h"
 #import "HomeViewController.h"
 @interface RootViewController : PTViewController
-@property (nonatomic, copy) HomeViewController * homeVC;
-@property (nonatomic, copy) NearWorkersViewController * nearWorkersVC;
+@property (nonatomic, strong) HomeViewController * homeVC;
+@property (nonatomic, strong) NearWorkersViewController * nearWorkersVC;
 @property (strong, nonatomic) UIViewController *currentVC;
 @end

@@ -28,7 +28,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenHeight)];
-
+    [self.window setBackgroundColor:[UIColor whiteColor]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setRootView) name:@"RootVCNotice" object:nil];
+    
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8) {
         //由于IOS8中定位的授权机制改变 需要进行手动授权
         CLLocationManager  *locationManager = [[CLLocationManager alloc] init];
@@ -37,22 +40,21 @@
         [locationManager requestWhenInUseAuthorization];
     }
     
+    _mapManager = [[BMKMapManager alloc]init];
+    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
+    BOOL ret = [_mapManager start:@"nByscOMa0BllCByQrvdZsxVC"  generalDelegate:nil];
+    if (ret) {
+        _locService = [[BMKLocationService alloc]init];
+        _locService.delegate = self;
+        [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+    }
+    
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"Userlatitude"]) {
         [[NSUserDefaults standardUserDefaults] setObject:@"39.905206" forKey:@"Userlatitude"];
         [[NSUserDefaults standardUserDefaults] setObject:@"116.390356" forKey:@"Userlongitude"];
         [[NSUserDefaults standardUserDefaults] setObject:@"北京市" forKey:@"USERADDRESS"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        _mapManager = [[BMKMapManager alloc]init];
-        // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
-        BOOL ret = [_mapManager start:@"nByscOMa0BllCByQrvdZsxVC"  generalDelegate:nil];
-        if (ret) {
-            _locService = [[BMKLocationService alloc]init];
-            _locService.delegate = self;
-            [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
-            [_locService startUserLocationService];
-        }
-        
+        [_locService startUserLocationService];
     }
     
 //    [self test];
@@ -85,6 +87,14 @@
         nav.navigationItem.backBarButtonItem = nil;
         [self.window setRootViewController:nav];
     }
+    [self.window makeKeyAndVisible];
+}
+
+- (void)setRootView{
+    RootViewController * vc = [[RootViewController alloc] init];
+    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:vc];
+    nav.navigationItem.backBarButtonItem = nil;
+    [self.window setRootViewController:nav];
     [self.window makeKeyAndVisible];
 }
 

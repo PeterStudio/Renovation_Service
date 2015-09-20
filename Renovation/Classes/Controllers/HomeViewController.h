@@ -13,7 +13,7 @@
 @interface HomeViewController : PTViewController<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
 {
 //    BMKMapView* _mapView;
-    BMKLocationService* _locService;
+//    BMKLocationService* _locService;
     BMKGeoCodeSearch* _geocodesearch;
     int startIndex;
 }

@@ -157,8 +157,10 @@
             [SVProgressHUD dismiss];
             [[NSUserDefaults standardUserDefaults] setObject:[userModel.doc toDictionary] forKey:USERINFO];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            RootViewController * vc = [[RootViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RootVCNotice" object:nil];
+//            RootViewController * vc = [[RootViewController alloc] init];
+//            [self.navigationController pushViewController:vc animated:YES];
         }else{
             [SVProgressHUD showErrorWithStatus:userModel.retinfo];
         }

@@ -14,7 +14,7 @@
 #import "MyInfoViewController.h"
 #import "UserModel.h"
 #import "UIButton+WebCache.h"
-
+#import "ServiceAgreementViewController.h"
 
 @interface PersionViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *headBtn;
@@ -87,7 +87,8 @@
 }
 
 - (IBAction)contractTermsButtonClick:(id)sender {
-    
+    ServiceAgreementViewController * vc = [[ServiceAgreementViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)nearWorkersButtonClick:(id)sender {
