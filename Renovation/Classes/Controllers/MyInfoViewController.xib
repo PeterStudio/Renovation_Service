@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyInfoViewController">
@@ -27,16 +27,24 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="146"/>
                 </imageView>
                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_head02" translatesAutoresizingMaskIntoConstraints="NO" id="0IT-NS-qY3">
-                    <rect key="frame" x="135" y="25" width="51" height="51"/>
+                    <rect key="frame" x="135" y="25" width="50" height="50"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="gxG-Eg-fO5"/>
+                        <constraint firstAttribute="height" constant="50" id="oCc-36-3bM"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="xQJ-5f-3bc" appends="YES" id="yKb-a5-O8f"/>
+                    </connections>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="杨昌银" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzj-97-dMr">
-                    <rect key="frame" x="138" y="90" width="45" height="18"/>
+                    <rect key="frame" x="137" y="89" width="45" height="18"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北京市朝阳区星城国际" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SqW-1y-0D2">
-                    <rect key="frame" x="96" y="116" width="130" height="16"/>
+                    <rect key="frame" x="95" y="115" width="130" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -60,26 +68,32 @@
                     <rect key="frame" x="15" y="251" width="14" height="14"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13911661587" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7S-Ne-WQm">
-                    <rect key="frame" x="41" y="160" width="88" height="17"/>
+                    <rect key="frame" x="41" y="160" width="86" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5TD-gG-VOr">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入姓名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5TD-gG-VOr">
                     <rect key="frame" x="41" y="199" width="264" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="8D8-fX-781"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="PS0-QO-6fa"/>
+                    </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9y7-vF-lQR">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入地址" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9y7-vF-lQR">
                     <rect key="frame" x="41" y="243" width="264" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="d5G-DD-sIw"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="qOq-on-Vg5"/>
+                    </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bta-x8-qfe">
                     <rect key="frame" x="15" y="291" width="145" height="45"/>
@@ -207,11 +221,16 @@
             <connections>
                 <outletCollection property="gestureRecognizers" destination="s7l-07-btr" appends="YES" id="xJF-Pi-Bap"/>
             </connections>
-            <point key="canvasLocation" x="479" y="435"/>
+            <point key="canvasLocation" x="349" y="411"/>
         </view>
         <tapGestureRecognizer id="s7l-07-btr">
             <connections>
                 <action selector="tapView:" destination="-1" id="VV2-GO-kf7"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="xQJ-5f-3bc">
+            <connections>
+                <action selector="headImgTap:" destination="-1" id="n9R-Kt-qbU"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

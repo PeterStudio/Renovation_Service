@@ -12,9 +12,10 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate,BMKLocationServiceDelegate,UIAlertViewDelegate>
 {
     BMKMapManager* _mapManager;
-    BMKLocationService* _locService;
+    int startIndex;
 }
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) BMKLocationService * locService;
 #define appDelegate     ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 @end

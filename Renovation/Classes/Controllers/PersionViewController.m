@@ -33,10 +33,21 @@
 //    self.navigationController.navigationBarHidden = YES;
 //}
 //
-//- (void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    
-//}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.uModel = [[UserInfoModel alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:USERINFO] error:nil];
+    _headBtn.layer.masksToBounds = YES;
+    _headBtn.layer.cornerRadius = 25.0f;
+    if ([self.uModel.headUrl isAbsolutePath]) {
+        [_headBtn setImage:[UIImage imageWithContentsOfFile:self.uModel.headUrl] forState:UIControlStateNormal];
+    }else{
+        [_headBtn sd_setImageWithURL:[NSURL URLWithString:self.uModel.headUrl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"user_head02"]];
+    }
+    _nameLab.text = self.uModel.name;
+    _addressLab.text = self.uModel.address;
+    
+}
 //
 //- (void)viewWillDisappear:(BOOL)animated{
 //    [super viewWillDisappear:animated];
@@ -48,12 +59,12 @@
     [super viewDidLoad];
     self.title =  @"个人中心";
     
-    self.uModel = [[UserInfoModel alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:USERINFO] error:nil];
-    _headBtn.layer.masksToBounds = YES;
-    _headBtn.layer.cornerRadius = 25.0f;
-    [_headBtn sd_setImageWithURL:[NSURL URLWithString:self.uModel.headUrl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"user_head02"]];
-    _nameLab.text = self.uModel.name;
-    _addressLab.text = self.uModel.address;
+//    self.uModel = [[UserInfoModel alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:USERINFO] error:nil];
+//    _headBtn.layer.masksToBounds = YES;
+//    _headBtn.layer.cornerRadius = 25.0f;
+//    [_headBtn sd_setImageWithURL:[NSURL URLWithString:self.uModel.headUrl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"user_head02"]];
+//    _nameLab.text = self.uModel.name;
+//    _addressLab.text = self.uModel.address;
     _yifukuanLab.text = @"0笔";
     _zaishigongLab.text = @"0个";
     _yiwangongLab.text = @"0个";

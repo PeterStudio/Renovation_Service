@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController">
@@ -24,10 +24,10 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qvd-Et-6YB" customClass="BMKMapView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="422"/>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="index_bg01" translatesAutoresizingMaskIntoConstraints="NO" id="Iei-0e-35g">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="index_bg01" translatesAutoresizingMaskIntoConstraints="NO" id="Iei-0e-35g">
                     <rect key="frame" x="263" y="9" width="47" height="47"/>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5TA-OP-3F4" userLabel="消息">
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5TA-OP-3F4" userLabel="消息">
                     <rect key="frame" x="263" y="9" width="47" height="47"/>
                     <subviews>
                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="index_bg02" translatesAutoresizingMaskIntoConstraints="NO" id="PVi-J6-9Q3">
@@ -39,7 +39,7 @@
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon02" translatesAutoresizingMaskIntoConstraints="NO" id="B8L-ue-aLM">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon02" translatesAutoresizingMaskIntoConstraints="NO" id="B8L-ue-aLM">
                             <rect key="frame" x="13" y="16" width="21" height="16"/>
                         </imageView>
                     </subviews>
@@ -59,13 +59,13 @@
                         <outletCollection property="gestureRecognizers" destination="hCy-jT-57T" appends="YES" id="drs-UD-CDB"/>
                     </connections>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="index_bg01" translatesAutoresizingMaskIntoConstraints="NO" id="WmP-lI-mr4">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="index_bg01" translatesAutoresizingMaskIntoConstraints="NO" id="WmP-lI-mr4">
                     <rect key="frame" x="263" y="368" width="47" height="47"/>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8n-rC-uyF" userLabel="定位">
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I8n-rC-uyF" userLabel="定位">
                     <rect key="frame" x="263" y="368" width="47" height="47"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon04" translatesAutoresizingMaskIntoConstraints="NO" id="uNg-Mc-Ul3">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon04" translatesAutoresizingMaskIntoConstraints="NO" id="uNg-Mc-Ul3">
                             <rect key="frame" x="17" y="13" width="13" height="21"/>
                         </imageView>
                     </subviews>
@@ -79,13 +79,13 @@
                         <outletCollection property="gestureRecognizers" destination="xQm-C5-I1L" appends="YES" id="B3l-qr-VX9"/>
                     </connections>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="index_bg01" translatesAutoresizingMaskIntoConstraints="NO" id="DF0-18-FaQ">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="index_bg01" translatesAutoresizingMaskIntoConstraints="NO" id="DF0-18-FaQ">
                     <rect key="frame" x="263" y="312" width="47" height="47"/>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ab-wT-IX4" userLabel="搜索">
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Ab-wT-IX4" userLabel="搜索">
                     <rect key="frame" x="263" y="312" width="47" height="47"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon03" translatesAutoresizingMaskIntoConstraints="NO" id="0Lb-D5-if8">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon03" translatesAutoresizingMaskIntoConstraints="NO" id="0Lb-D5-if8">
                             <rect key="frame" x="14" y="14" width="19" height="19"/>
                         </imageView>
                     </subviews>

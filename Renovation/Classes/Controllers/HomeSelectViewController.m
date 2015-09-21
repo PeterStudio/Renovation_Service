@@ -26,6 +26,7 @@
     [[AppService sharedManager] request_decorations_Http_userId:[dic objectForKey:@"userId"] state:@"0" success:^(id responseObject) {
         DecorationsModel * dModel = (DecorationsModel *)responseObject;
         if ([RETURN_CODE_SUCCESS isEqualToString:dModel.retcode]) {
+            [SVProgressHUD dismiss];
             DecorationsInfoModel * DFModel = (DecorationsInfoModel *)dModel.doc;
             _dataSourceArr = [NSMutableArray arrayWithArray:DFModel.homeInfo];
             [_mainTableView reloadData];

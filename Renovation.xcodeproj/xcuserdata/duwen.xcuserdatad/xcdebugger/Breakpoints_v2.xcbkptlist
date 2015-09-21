@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Renovation/Classes/Controllers/RegistViewController.m"
-            timestampString = "464450583.495539"
+            filePath = "Renovation/Classes/Controllers/PersionViewController.m"
+            timestampString = "464542925.711145"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "-registButtonClick:"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "-persionInfoTouch:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Renovation/Classes/Controllers/HomeViewController.m"
-            timestampString = "464454168.100083"
+            filePath = "Renovation/Classes/Controllers/PersionViewController.m"
+            timestampString = "464542928.245376"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
-            landmarkName = "-didUpdateBMKUserLocation:"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "-myInformationButtonClick:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

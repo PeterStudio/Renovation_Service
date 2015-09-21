@@ -16,7 +16,7 @@
 #import "VersionModel.h"
 
 #import "RootViewController.h"
-
+#import "AppDelegate.h"
 #import "WelComeViewController.h"
 
 @interface AppDelegate ()<WelComeViewControllerDelegate>
@@ -29,8 +29,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenHeight)];
     [self.window setBackgroundColor:[UIColor whiteColor]];
-    
+    startIndex = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setRootView) name:@"RootVCNotice" object:nil];
+    
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"Userlatitude"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"39.905206" forKey:@"Userlatitude"];
+        [[NSUserDefaults standardUserDefaults] setObject:@"116.390356" forKey:@"Userlongitude"];
+        [[NSUserDefaults standardUserDefaults] setObject:@"北京市" forKey:@"USERADDRESS"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
     
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8) {
         //由于IOS8中定位的授权机制改变 需要进行手动授权
@@ -40,6 +47,7 @@
         [locationManager requestWhenInUseAuthorization];
     }
     
+    
     _mapManager = [[BMKMapManager alloc]init];
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
     BOOL ret = [_mapManager start:@"nByscOMa0BllCByQrvdZsxVC"  generalDelegate:nil];
@@ -47,15 +55,10 @@
         _locService = [[BMKLocationService alloc]init];
         _locService.delegate = self;
         [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
-    }
-    
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"Userlatitude"]) {
-        [[NSUserDefaults standardUserDefaults] setObject:@"39.905206" forKey:@"Userlatitude"];
-        [[NSUserDefaults standardUserDefaults] setObject:@"116.390356" forKey:@"Userlongitude"];
-        [[NSUserDefaults standardUserDefaults] setObject:@"北京市" forKey:@"USERADDRESS"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
         [_locService startUserLocationService];
     }
+    
+    
     
 //    [self test];
 //    [self updateVersion];
@@ -158,20 +161,24 @@
 }
 
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
-    NSNumber *latNumber = [NSNumber numberWithDouble:userLocation.location.coordinate.latitude];
-    NSString *lat = [latNumber stringValue];
-    NSNumber *lngNumber = [NSNumber numberWithDouble:userLocation.location.coordinate.longitude];
-    NSString *lng = [lngNumber stringValue];
-    [[NSUserDefaults standardUserDefaults] setObject:lat forKey:@"Userlatitude"];
-    [[NSUserDefaults standardUserDefaults] setObject:lng forKey:@"Userlongitude"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    [_locService stopUserLocationService];
-    _locService.delegate = nil;
+    ++startIndex;
+    if (startIndex == 1) {
+        NSNumber *latNumber = [NSNumber numberWithDouble:userLocation.location.coordinate.latitude];
+        NSString *lat = [latNumber stringValue];
+        NSNumber *lngNumber = [NSNumber numberWithDouble:userLocation.location.coordinate.longitude];
+        NSString *lng = [lngNumber stringValue];
+        [[NSUserDefaults standardUserDefaults] setObject:lat forKey:@"Userlatitude"];
+        [[NSUserDefaults standardUserDefaults] setObject:lng forKey:@"Userlongitude"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateLocation" object:userLocation];
+        [_locService stopUserLocationService];
+        startIndex = 0;
+    }
 }
 
 - (void)didFailToLocateUserWithError:(NSError *)error{
     [_locService stopUserLocationService];
-    _locService.delegate = nil;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

@@ -27,7 +27,7 @@
 
 @interface HomeViewController ()<BMKLocationServiceDelegate,MyAnimatedAnnotationViewDelegate>
 {
-    BOOL _isShowUserLocation;
+//    BOOL _isShowUserLocation;
     BMKPointAnnotation* pointAnnotation;
     BOOL _isNearWorker;
 }
@@ -56,7 +56,7 @@
     _isNearWorker = YES;
     _geocodesearch = [[BMKGeoCodeSearch alloc]init];
     startIndex = 0;
-    _isShowUserLocation = NO;
+//    _isShowUserLocation = NO;
     [_nearFactoryBtn backGroundCustomNorImage:@"btn01" selImage:@"btn01"];
     [_nearWorkBtn backGroundCustomNorImage:@"btn01" selImage:@"btn01"];
     [_workerBtn backGroundCustomNorImage:@"btn02" selImage:@"btn02"];
@@ -73,6 +73,10 @@
     _mapView.userTrackingMode = BMKUserTrackingModeNone;
     _mapView.showsUserLocation = YES;
     _mapView.isSelectedAnnotationViewFront = YES;
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLocationChange:) name:@"updateLocation" object:nil];
+    
     
 //    [self nearFactoryButtonClick:nil];
 
@@ -96,6 +100,18 @@
 //    }];
     
     [self LocationButtonClick:nil];
+}
+
+- (void)userLocationChange:(NSNotification *)notic{
+    BMKUserLocation * location = notic.object;
+    [_mapView updateLocationData:location];
+    [_mapView setCenterCoordinate:location.location.coordinate animated:YES];
+    [_mapView setZoomLevel:17];
+//    _mapView.userTrackingMode = BMKUserTrackingModeNone;
+//    _mapView.showsUserLocation = YES;
+//    _mapView.isSelectedAnnotationViewFront = YES;
+    [self reverseGeocode:location.location];
+    
 }
 
 - (void)addForemenAnnotation:(ForemenModel *)foremenModel {
@@ -150,13 +166,12 @@
 }
 
 - (IBAction)LocationButtonClick:(id)sender {
-    if (!_isShowUserLocation) {
-        _isShowUserLocation = YES;
-//        [_locService startUserLocationService];
-        _mapView.showsUserLocation = NO;//先关闭显示的定位图层
-        _mapView.userTrackingMode = BMKUserTrackingModeNone;//设置定位的状态
-        _mapView.showsUserLocation = YES;//显示定位图层
-    }
+    NSString * lat = [[NSUserDefaults standardUserDefaults] objectForKey:@"Userlatitude"];
+    NSString * lng = [[NSUserDefaults standardUserDefaults] objectForKey:@"Userlongitude"];
+    [_mapView setCenterCoordinate:CLLocationCoordinate2DMake([lat doubleValue], [lng doubleValue]) animated:YES];
+    [_mapView setZoomLevel:17];
+    
+    [appDelegate.locService startUserLocationService];
 }
 
 - (IBAction)nearFactoryButtonClick:(id)sender {
@@ -230,98 +245,98 @@
 }
 
 #pragma mark - BMKMapViewDelegate
-- (void)mapViewDidFinishLoading:(BMKMapView *)mapView{
-    NSLog(@"定位成功");
-    // 北京
-    CLLocationCoordinate2D pt = mapView.centerCoordinate;
-    [_mapView setCenterCoordinate:pt animated:YES];
-    [_mapView setZoomLevel:17];
-    [SVProgressHUD dismiss];
-}
-
-/**
- *在地图View将要启动定位时，会调用此函数
- *@param mapView 地图View
- */
-- (void)willStartLocatingUser
-{
-    NSLog(@"start locate");
-    [SVProgressHUD showWithStatus:@"努力定位中..." maskType:SVProgressHUDMaskTypeClear];
-}
-
-/**
- *用户方向更新后，会调用此函数
- *@param userLocation 新的用户位置
- */
-- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
-{
-    [_mapView updateLocationData:userLocation];
-    NSLog(@"heading is %@",userLocation.heading);
-}
-
-/**
- *用户位置更新后，会调用此函数
- *@param userLocation 新的用户位置
- */
-- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
-{
-    ++startIndex;
-    if (startIndex == 1) {
-        [_mapView setZoomLevel:17];
-        [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
-        
-        [self reverseGeocode:userLocation.location];
-//        [_locService stopUserLocationService];
-    }
-    
-    [_mapView updateLocationData:userLocation];
-    if (_isShowUserLocation) {
-        _isShowUserLocation = NO;
-        [_mapView setZoomLevel:17];
-        [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
-        [self reverseGeocode:userLocation.location];
-//        [_locService stopUserLocationService];
-    }
-    
-    NSNumber *latNumber = [NSNumber numberWithDouble:userLocation.location.coordinate.latitude];
-    NSString *lat = [latNumber stringValue];
-    NSNumber *lngNumber = [NSNumber numberWithDouble:userLocation.location.coordinate.longitude];
-    NSString *lng = [lngNumber stringValue];
-    [[NSUserDefaults standardUserDefaults] setObject:lat forKey:@"Userlatitude"];
-    [[NSUserDefaults standardUserDefaults] setObject:lng forKey:@"Userlongitude"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-/**
- *在地图View停止定位后，会调用此函数
- *@param mapView 地图View
- */
-- (void)didStopLocatingUser
-{
-    NSLog(@"stop locate");
-    [_mapView setZoomLevel:17];
-    [SVProgressHUD dismiss];
-}
-
-/**
- *定位失败后，会调用此函数
- *@param mapView 地图View
- *@param error 错误号，参考CLError.h中定义的错误号
- */
-- (void)didFailToLocateUserWithError:(NSError *)error
-{
-    NSLog(@"location error");
-    if (_isShowUserLocation) {
-        _isShowUserLocation = NO;
-    }
-    startIndex = 0;
-    [SVProgressHUD dismiss];
-    
-    [[NSUserDefaults standardUserDefaults] setObject:@"39.905206" forKey:@"Userlatitude"];
-    [[NSUserDefaults standardUserDefaults] setObject:@"116.390356" forKey:@"Userlongitude"];
-    [[NSUserDefaults standardUserDefaults] setObject:@"北京市天安门" forKey:@"USERADDRESS"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
+//- (void)mapViewDidFinishLoading:(BMKMapView *)mapView{
+//    NSLog(@"定位成功");
+//    // 北京
+//    CLLocationCoordinate2D pt = mapView.centerCoordinate;
+//    [_mapView setCenterCoordinate:pt animated:YES];
+//    [_mapView setZoomLevel:17];
+//    [SVProgressHUD dismiss];
+//}
+//
+///**
+// *在地图View将要启动定位时，会调用此函数
+// *@param mapView 地图View
+// */
+//- (void)willStartLocatingUser
+//{
+//    NSLog(@"start locate");
+//    [SVProgressHUD showWithStatus:@"努力定位中..." maskType:SVProgressHUDMaskTypeClear];
+//}
+//
+///**
+// *用户方向更新后，会调用此函数
+// *@param userLocation 新的用户位置
+// */
+//- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
+//{
+//    [_mapView updateLocationData:userLocation];
+//    NSLog(@"heading is %@",userLocation.heading);
+//}
+//
+///**
+// *用户位置更新后，会调用此函数
+// *@param userLocation 新的用户位置
+// */
+//- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+//{
+//    ++startIndex;
+//    if (startIndex == 1) {
+//        [_mapView setZoomLevel:17];
+//        [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
+//        
+//        [self reverseGeocode:userLocation.location];
+////        [_locService stopUserLocationService];
+//    }
+//    
+//    [_mapView updateLocationData:userLocation];
+//    if (_isShowUserLocation) {
+//        _isShowUserLocation = NO;
+//        [_mapView setZoomLevel:17];
+//        [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
+//        [self reverseGeocode:userLocation.location];
+////        [_locService stopUserLocationService];
+//    }
+//    
+//    NSNumber *latNumber = [NSNumber numberWithDouble:userLocation.location.coordinate.latitude];
+//    NSString *lat = [latNumber stringValue];
+//    NSNumber *lngNumber = [NSNumber numberWithDouble:userLocation.location.coordinate.longitude];
+//    NSString *lng = [lngNumber stringValue];
+//    [[NSUserDefaults standardUserDefaults] setObject:lat forKey:@"Userlatitude"];
+//    [[NSUserDefaults standardUserDefaults] setObject:lng forKey:@"Userlongitude"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//}
+//
+///**
+// *在地图View停止定位后，会调用此函数
+// *@param mapView 地图View
+// */
+//- (void)didStopLocatingUser
+//{
+//    NSLog(@"stop locate");
+//    [_mapView setZoomLevel:17];
+//    [SVProgressHUD dismiss];
+//}
+//
+///**
+// *定位失败后，会调用此函数
+// *@param mapView 地图View
+// *@param error 错误号，参考CLError.h中定义的错误号
+// */
+//- (void)didFailToLocateUserWithError:(NSError *)error
+//{
+//    NSLog(@"location error");
+//    if (_isShowUserLocation) {
+//        _isShowUserLocation = NO;
+//    }
+//    startIndex = 0;
+//    [SVProgressHUD dismiss];
+//    
+//    [[NSUserDefaults standardUserDefaults] setObject:@"39.905206" forKey:@"Userlatitude"];
+//    [[NSUserDefaults standardUserDefaults] setObject:@"116.390356" forKey:@"Userlongitude"];
+//    [[NSUserDefaults standardUserDefaults] setObject:@"北京市天安门" forKey:@"USERADDRESS"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//}
 
 - (void)reverseGeocode:(CLLocation *)location{
     BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
