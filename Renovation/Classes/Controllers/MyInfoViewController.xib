@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyInfoViewController">
@@ -12,9 +12,11 @@
                 <outlet property="boyBtn" destination="bta-x8-qfe" id="Hv0-Ld-O7C"/>
                 <outlet property="girlBtn" destination="qLO-42-9WK" id="mMY-Mn-zXG"/>
                 <outlet property="headIV" destination="0IT-NS-qY3" id="Mcr-xd-Y4X"/>
+                <outlet property="headTopLayoutConstraint" destination="xAe-RR-7wI" id="lQl-li-ElC"/>
                 <outlet property="nameLab" destination="mzj-97-dMr" id="Uq6-WP-n0f"/>
                 <outlet property="nameTF" destination="5TD-gG-VOr" id="HHo-q2-abm"/>
                 <outlet property="phoneLab" destination="y7S-Ne-WQm" id="6hW-w5-zLH"/>
+                <outlet property="topLayoutConstraint" destination="jAo-X8-Z44" id="NYl-I2-ejX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -68,7 +70,7 @@
                     <rect key="frame" x="15" y="251" width="14" height="14"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13911661587" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7S-Ne-WQm">
-                    <rect key="frame" x="41" y="160" width="86" height="17"/>
+                    <rect key="frame" x="41" y="160" width="88" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -149,6 +151,7 @@
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Xge-Jw-fqi" secondAttribute="trailing" id="7Bb-fr-O3o"/>
                         <constraint firstItem="Xge-Jw-fqi" firstAttribute="top" secondItem="LAB-DS-0ea" secondAttribute="top" id="9RT-aO-PZR"/>
@@ -161,6 +164,9 @@
                         <constraint firstItem="kRd-g8-52p" firstAttribute="leading" secondItem="rBG-YQ-cVt" secondAttribute="trailing" constant="10" id="xol-fq-7rZ"/>
                         <constraint firstItem="Xge-Jw-fqi" firstAttribute="leading" secondItem="LAB-DS-0ea" secondAttribute="leading" id="zQH-DE-o92"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="bIh-48-x1z" appends="YES" id="qb0-JW-Wgz"/>
+                    </connections>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如需变更手机号，请联系客服人员！" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wV-HF-LQL">
                     <rect key="frame" x="40" y="425" width="240" height="18"/>
@@ -231,6 +237,11 @@
         <tapGestureRecognizer id="xQJ-5f-3bc">
             <connections>
                 <action selector="headImgTap:" destination="-1" id="n9R-Kt-qbU"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="bIh-48-x1z">
+            <connections>
+                <action selector="phoneTouch:" destination="-1" id="YYT-CE-vtb"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

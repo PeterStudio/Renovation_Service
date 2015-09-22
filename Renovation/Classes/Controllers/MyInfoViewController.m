@@ -33,6 +33,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *girlBtn;
 
 @property (strong, nonatomic) UserInfoModel * uModel;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headTopLayoutConstraint;
+
+
 @end
 
 @implementation MyInfoViewController
@@ -107,9 +112,18 @@
     }
 }
 
+- (IBAction)phoneTouch:(id)sender {
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"4000000878"];
+    UIWebView * callWebview = [[UIWebView alloc] init];
+    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+    [self.view addSubview:callWebview];
+}
+
 - (IBAction)tapView:(id)sender {
     [self.view endEditing:YES];
-    self.view.frame = CGRectMake(rect.origin.x, rect.origin.y + 64, rect.size.width, rect.size.height);
+//    self.view.frame = CGRectMake(rect.origin.x, rect.origin.y + 64, rect.size.width, rect.size.height);
+    _topLayoutConstraint.constant = 0;
+    _headTopLayoutConstraint.constant = 25;
 }
 
 - (IBAction)headImgTap:(id)sender {
@@ -125,7 +139,10 @@
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    self.view.frame = CGRectMake(rect.origin.x, rect.origin.y - 100, rect.size.width, rect.size.height);
+//    self.view.frame = CGRectMake(rect.origin.x, rect.origin.y - 100, rect.size.width, rect.size.height);
+    _topLayoutConstraint.constant = -120;
+    _headTopLayoutConstraint.constant = 25 - 120;
+    [self.view layoutIfNeeded];
     return YES;
 }
 

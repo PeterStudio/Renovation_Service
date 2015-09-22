@@ -138,7 +138,7 @@
 		0BD03C6C1B0F31730025D8FA /* CooperationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD03C6A1B0F31730025D8FA /* CooperationViewController.xib */; };
 		0BEBC69C1B1D110900C800F2 /* MyAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEBC69A1B1D110900C800F2 /* MyAppointmentViewController.m */; };
 		0BEBC69D1B1D110900C800F2 /* MyAppointmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEBC69B1B1D110900C800F2 /* MyAppointmentViewController.xib */; };
-		0BF023021BB04A5A008A6743 /* about.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0BF023011BB04A5A008A6743 /* about.txt */; settings = {ASSET_TAGS = (); }; };
+		0BF023021BB04A5A008A6743 /* about.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0BF023011BB04A5A008A6743 /* about.txt */; };
 		0BF116D41B1452F9000883B7 /* AppService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF116D31B1452F9000883B7 /* AppService.m */; };
 		0BF116D81B1454FC000883B7 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF116D71B1454FC000883B7 /* BaseModel.m */; };
 		0BF116DB1B14551F000883B7 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF116DA1B14551F000883B7 /* UserModel.m */; };
@@ -1210,7 +1210,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wen Du (9759CE9JFQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wen Du (6WWFTZ4U92)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1255,7 +1255,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wen Du (9759CE9JFQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wen Du (6WWFTZ4U92)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1282,7 +1282,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wen Du (9759CE9JFQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wen Du (6WWFTZ4U92)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1305,7 +1305,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wen Du (9759CE9JFQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wen Du (6WWFTZ4U92)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
