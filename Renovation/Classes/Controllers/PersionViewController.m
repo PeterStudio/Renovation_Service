@@ -103,8 +103,7 @@
 }
 
 - (IBAction)nearWorkersButtonClick:(id)sender {
-    NearWorkersViewController * vc = [[NearWorkersViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)moreButtonClick:(id)sender {

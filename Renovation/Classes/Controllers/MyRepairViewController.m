@@ -21,6 +21,16 @@
 
     self.title = @"我的装修";
     
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setTitle:@"添加" forState:UIControlStateNormal];
+    [btn setFrame:CGRectMake(0, 0, 80, 20)];
+
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem = item;
+    
+//    [btn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    
     UINib *cellNib = [UINib nibWithNibName:@"NearWorkersTableViewCell" bundle:nil];
     [_mainTableView registerNib:cellNib forCellReuseIdentifier:cellIndentifier];
     self.prototypeCell  = [_mainTableView dequeueReusableCellWithIdentifier:cellIndentifier];

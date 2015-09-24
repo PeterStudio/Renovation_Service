@@ -25,6 +25,9 @@
 #import "UserModel.h"
 #import "MessageListModel.h"
 
+#import "UIImageView+WebCache.h"
+
+
 @interface HomeViewController ()<BMKLocationServiceDelegate,MyAnimatedAnnotationViewDelegate>
 {
 //    BOOL _isShowUserLocation;
@@ -244,100 +247,6 @@
     [self.view addSubview:callWebview];
 }
 
-#pragma mark - BMKMapViewDelegate
-//- (void)mapViewDidFinishLoading:(BMKMapView *)mapView{
-//    NSLog(@"定位成功");
-//    // 北京
-//    CLLocationCoordinate2D pt = mapView.centerCoordinate;
-//    [_mapView setCenterCoordinate:pt animated:YES];
-//    [_mapView setZoomLevel:17];
-//    [SVProgressHUD dismiss];
-//}
-//
-///**
-// *在地图View将要启动定位时，会调用此函数
-// *@param mapView 地图View
-// */
-//- (void)willStartLocatingUser
-//{
-//    NSLog(@"start locate");
-//    [SVProgressHUD showWithStatus:@"努力定位中..." maskType:SVProgressHUDMaskTypeClear];
-//}
-//
-///**
-// *用户方向更新后，会调用此函数
-// *@param userLocation 新的用户位置
-// */
-//- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
-//{
-//    [_mapView updateLocationData:userLocation];
-//    NSLog(@"heading is %@",userLocation.heading);
-//}
-//
-///**
-// *用户位置更新后，会调用此函数
-// *@param userLocation 新的用户位置
-// */
-//- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
-//{
-//    ++startIndex;
-//    if (startIndex == 1) {
-//        [_mapView setZoomLevel:17];
-//        [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
-//        
-//        [self reverseGeocode:userLocation.location];
-////        [_locService stopUserLocationService];
-//    }
-//    
-//    [_mapView updateLocationData:userLocation];
-//    if (_isShowUserLocation) {
-//        _isShowUserLocation = NO;
-//        [_mapView setZoomLevel:17];
-//        [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
-//        [self reverseGeocode:userLocation.location];
-////        [_locService stopUserLocationService];
-//    }
-//    
-//    NSNumber *latNumber = [NSNumber numberWithDouble:userLocation.location.coordinate.latitude];
-//    NSString *lat = [latNumber stringValue];
-//    NSNumber *lngNumber = [NSNumber numberWithDouble:userLocation.location.coordinate.longitude];
-//    NSString *lng = [lngNumber stringValue];
-//    [[NSUserDefaults standardUserDefaults] setObject:lat forKey:@"Userlatitude"];
-//    [[NSUserDefaults standardUserDefaults] setObject:lng forKey:@"Userlongitude"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//}
-//
-///**
-// *在地图View停止定位后，会调用此函数
-// *@param mapView 地图View
-// */
-//- (void)didStopLocatingUser
-//{
-//    NSLog(@"stop locate");
-//    [_mapView setZoomLevel:17];
-//    [SVProgressHUD dismiss];
-//}
-//
-///**
-// *定位失败后，会调用此函数
-// *@param mapView 地图View
-// *@param error 错误号，参考CLError.h中定义的错误号
-// */
-//- (void)didFailToLocateUserWithError:(NSError *)error
-//{
-//    NSLog(@"location error");
-//    if (_isShowUserLocation) {
-//        _isShowUserLocation = NO;
-//    }
-//    startIndex = 0;
-//    [SVProgressHUD dismiss];
-//    
-//    [[NSUserDefaults standardUserDefaults] setObject:@"39.905206" forKey:@"Userlatitude"];
-//    [[NSUserDefaults standardUserDefaults] setObject:@"116.390356" forKey:@"Userlongitude"];
-//    [[NSUserDefaults standardUserDefaults] setObject:@"北京市天安门" forKey:@"USERADDRESS"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//}
-
 - (void)reverseGeocode:(CLLocation *)location{
     BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
     reverseGeocodeSearchOption.reverseGeoPoint = location.coordinate;
@@ -402,24 +311,24 @@
 
 
 - (UIView *)workerView:(CustomAnnotation *)customAn{
-    UIView *viewForImage=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 150, 64)];
+    UIView *viewForImage=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 100)];
     UIImageView *imageview = [[UIImageView alloc]initWithFrame:viewForImage.frame];
     [imageview setImage:[UIImage imageNamed:@"speed_bg02"]];
     [viewForImage addSubview:imageview];
     
-    UIImageView * icon = [[UIImageView alloc] initWithFrame:CGRectMake(5, 10, 40, 40)];
+    UIImageView * icon = [[UIImageView alloc] initWithFrame:CGRectMake(15, 10 + 5, 60, 60)];
     icon.layer.masksToBounds = YES;
     icon.layer.cornerRadius = 20;
-    [icon setImage:[UIImage imageNamed:@"head"]];
+    [icon sd_setImageWithURL:[NSURL URLWithString:customAn.url] placeholderImage:[UIImage imageNamed:@"foot_bg02"] options:SDWebImageRetryFailed];
     [viewForImage addSubview:icon];
     
-    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(50, 10, 75, 15)];
+    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(50 + 30, 10 + 10, 75, 18)];
     label.text = customAn.name;
-    label.font = [UIFont boldSystemFontOfSize:15];
+    label.font = [UIFont boldSystemFontOfSize:18];
     label.backgroundColor=[UIColor clearColor];
     [viewForImage addSubview:label];
     
-    RatingBar * rate = [[RatingBar alloc] initWithFrame:CGRectMake(50, 35, 70, 16)];
+    RatingBar * rate = [[RatingBar alloc] initWithFrame:CGRectMake(50 + 30, 35 + 20, 70 + 30, 16 + 10)];
     rate.isIndicator = YES;
     rate.height = 15.0;rate.width = 18.2;
     [rate setImageDeselected:@"start_icon01" halfSelected:nil fullSelected:@"start_icon01_1" andDelegate:nil];
@@ -429,24 +338,24 @@
 }
 
 - (UIView *)workSiteView:(CustomAnnotation *)customAn{
-    UIView *viewForImage=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 150, 64)];
+    UIView *viewForImage=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 100)];
     UIImageView *imageview = [[UIImageView alloc]initWithFrame:viewForImage.frame];
     [imageview setImage:[UIImage imageNamed:@"speed_bg04"]];
     [viewForImage addSubview:imageview];
     
-    UIImageView * icon = [[UIImageView alloc] initWithFrame:CGRectMake(5, 10, 40, 40)];
+    UIImageView * icon = [[UIImageView alloc] initWithFrame:CGRectMake(15, 10 + 5, 40 + 20, 40 + 20)];
     icon.layer.masksToBounds = YES;
     icon.layer.cornerRadius = 20;
-    [icon setImage:[UIImage imageNamed:@"head"]];
+    [icon sd_setImageWithURL:[NSURL URLWithString:customAn.url] placeholderImage:[UIImage imageNamed:@"foot_bg02"] options:SDWebImageRetryFailed];
     [viewForImage addSubview:icon];
     
-    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(50, 12, 75, 15)];
+    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(50 + 30, 12 + 10, 75 + 30, 18)];
     label.text = customAn.name;
-    label.font = [UIFont boldSystemFontOfSize:15];
+    label.font = [UIFont boldSystemFontOfSize:18];
     label.backgroundColor=[UIColor clearColor];
     [viewForImage addSubview:label];
     
-    UILabel *numLab=[[UILabel alloc]initWithFrame:CGRectMake(50, 35, 75, 15)];
+    UILabel *numLab=[[UILabel alloc]initWithFrame:CGRectMake(50 + 30, 35 + 20, 75 + 30, 15 + 10)];
     numLab.text =  [NSString stringWithFormat:@"工地数:%@",customAn.siteNum];
     numLab.font = [UIFont systemFontOfSize:14];
     numLab.backgroundColor=[UIColor clearColor];
